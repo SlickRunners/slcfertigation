@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaFeed Solutions — Precision Fertigation Services</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-dark:  #1a4a2e;
+      --green-mid:   #2e7d46;
+      --green-light: #4caf72;
+      --blue:        #1976d2;
+      --blue-light:  #e3f2fd;
+      --gold:        #f9a825;
+      --text:        #212121;
+      --text-light:  #555;
+      --bg:          #f9fbf9;
+      --white:       #ffffff;
+      --radius:      8px;
+      --shadow:      0 4px 20px rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+    }
+
+    /* ── NAV ──────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      box-shadow: 0 1px 8px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6%;
+      height: 68px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--green-mid);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .nav-logo span {
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--green-dark);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-light);
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green-mid); }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: filter 0.2s, transform 0.1s;
+      border: none;
+    }
+
+    .btn:hover { filter: brightness(1.08); transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+
+    .btn-primary { background: var(--green-mid); color: var(--white); }
+    .btn-outline {
+      background: transparent;
+      color: var(--green-mid);
+      border: 2px solid var(--green-mid);
+    }
+    .btn-gold { background: var(--gold); color: #333; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--green-dark) 0%, var(--green-mid) 60%, #3a9e5c 100%);
+      color: var(--white);
+      padding: 100px 6% 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .hero p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      max-width: 480px;
+      margin-bottom: 36px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .hero-visual {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 36px;
+      backdrop-filter: blur(4px);
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card .number {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--gold);
+      display: block;
+    }
+
+    .stat-card .label {
+      font-size: 0.82rem;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    /* ── SECTION SHARED ───────────────────────── */
+    section { padding: 80px 6%; }
+
+    .section-label {
+      display: inline-block;
+      color: var(--green-mid);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      line-height: 1.25;
+      margin-bottom: 14px;
+      color: var(--green-dark);
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 1rem;
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    .text-center { text-align: center; }
+    .text-center .section-subtitle { margin-inline: auto; }
+
+    /* ── SERVICES ─────────────────────────────── */
+    #services { background: var(--white); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      border: 1px solid #e0ede6;
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 52px;
+      height: 52px;
+      background: var(--blue-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-bottom: 18px;
+    }
+
+    .service-card h3 {
+      font-size: 1.1rem;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+
+    /* ── HOW IT WORKS ─────────────────────────── */
+    #process { background: var(--bg); }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0;
+      position: relative;
+    }
+
+    .steps::before {
+      content: '';
+      position: absolute;
+      top: 36px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green-light), var(--blue));
+      z-index: 0;
+    }
+
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--green-mid);
+      color: var(--white);
+      font-size: 1.4rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border: 4px solid var(--white);
+      box-shadow: 0 0 0 3px var(--green-mid);
+    }
+
+    .step h3 {
+      font-size: 1rem;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      font-size: 0.88rem;
+      color: var(--text-light);
+      line-height: 1.6;
+    }
+
+    /* ── BENEFITS ─────────────────────────────── */
+    #benefits {
+      background: var(--green-dark);
+      color: var(--white);
+    }
+
+    #benefits .section-title { color: var(--white); }
+    #benefits .section-subtitle { color: rgba(255,255,255,0.75); }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .benefit-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 12px;
+      padding: 28px 24px;
+    }
+
+    .benefit-icon {
+      font-size: 2rem;
+      margin-bottom: 14px;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+
+    .benefit-card p {
+      font-size: 0.9rem;
+      opacity: 0.8;
+      line-height: 1.65;
+    }
+
+    /* ── TESTIMONIALS ─────────────────────────── */
+    #testimonials { background: var(--white); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      border: 1px solid #e0ede6;
+      border-radius: 12px;
+      padding: 30px;
+    }
+
+    .stars { color: var(--gold); font-size: 1.1rem; margin-bottom: 14px; }
+
+    .testimonial-card blockquote {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--green-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+
+    .author-info strong { display: block; font-size: 0.92rem; color: var(--text); }
+    .author-info span { font-size: 0.82rem; color: var(--text-light); }
+
+    /* ── CONTACT ──────────────────────────────── */
+    #contact { background: var(--bg); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .contact-info h2 { font-size: 1.6rem; color: var(--green-dark); margin-bottom: 14px; }
+    .contact-info p { color: var(--text-light); margin-bottom: 30px; line-height: 1.7; }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+      font-size: 0.95rem;
+    }
+
+    .contact-item .ci-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--green-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    form { display: flex; flex-direction: column; gap: 16px; }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #cde0d5;
+      border-radius: var(--radius);
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: var(--white);
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+      border-color: var(--green-mid);
+      box-shadow: 0 0 0 3px rgba(46,125,70,0.12);
+    }
+
+    form textarea { resize: vertical; min-height: 120px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    form .btn { align-self: flex-start; padding: 14px 32px; font-size: 1rem; }
+
+    .form-note { font-size: 0.8rem; color: var(--text-light); margin-top: -8px; }
+
+    /* ── FOOTER ───────────────────────────────── */
+    footer {
+      background: #0f2d1c;
+      color: rgba(255,255,255,0.75);
+      padding: 56px 6% 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand .logo-icon {
+      background: var(--green-mid);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      max-width: 280px;
+      margin-top: 10px;
+    }
+
+    footer h4 {
+      color: var(--white);
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+    }
+
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 10px; }
+
+    footer ul a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.65);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    footer ul a:hover { color: var(--green-light); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.82rem;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    /* ── TOAST ────────────────────────────────── */
+    #toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 14px 22px;
+      border-radius: var(--radius);
+      font-size: 0.92rem;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.35s ease;
+      z-index: 9999;
+    }
+
+    #toast.show { transform: translateY(0); opacity: 1; }
+
+    /* ── RESPONSIVE ───────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 70px 6% 60px; }
+      .hero-visual { display: none; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .steps::before { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 68px; left: 0; right: 0; background: var(--white); padding: 20px 6%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); gap: 16px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      section { padding: 60px 5%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ─────────────────────────────────────── -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="logo-icon">💧</div>
+    <span>AquaFeed Solutions</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#benefits">Benefits</a></li>
+    <li><a href="#testimonials">Results</a></li>
+    <li><a href="#contact" class="btn btn-primary">Get a Quote</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ── HERO ─────────────────────────────────────── -->
+<section class="hero" id="home">
+  <div>
+    <span class="hero-badge">Precision Fertigation Systems</span>
+    <h1>Feed Your Crops <em>Smarter</em>, Not Harder</h1>
+    <p>We design, install, and manage automated fertigation systems that deliver the right nutrients, at the right time, directly to your crop roots — maximizing yield while cutting input costs.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-gold">Get a Free Site Assessment</a>
+      <a href="#process" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);">See How It Works</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div style="text-align:center;font-size:3rem;margin-bottom:24px;">🌱</div>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <span class="number">35%</span>
+        <span class="label">Average water savings</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">28%</span>
+        <span class="label">Fertilizer reduction</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">500+</span>
+        <span class="label">Systems installed</span>
+      </div>
+      <div class="stat-card">
+        <span class="number">98%</span>
+        <span class="label">Client satisfaction</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SERVICES ──────────────────────────────────── -->
+<section id="services">
+  <div class="text-center">
+    <span class="section-label">What We Do</span>
+    <h2 class="section-title">Full-Service Fertigation Solutions</h2>
+    <p class="section-subtitle">From soil analysis to real-time monitoring, we handle every step of your fertigation journey.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🔬</div>
+      <h3>Soil & Water Analysis</h3>
+      <p>Comprehensive soil and water testing to build a precise nutrient baseline tailored to your crop type and growth stage.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h3>System Design & Installation</h3>
+      <p>Custom-engineered fertigation systems sized to your acreage, with drip, micro-spray, or pivot integration options.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📱</div>
+      <h3>Smart Monitoring & Control</h3>
+      <p>IoT-connected sensors and a mobile dashboard give you real-time EC/pH readings and remote adjustment capability.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Nutrient Program Management</h3>
+      <p>Agronomist-crafted feeding schedules updated throughout the season based on tissue testing and weather data.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Maintenance & Support</h3>
+      <p>Scheduled preventive maintenance, emergency service, and a 24/7 support line to keep your system running at peak.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Reporting & Analytics</h3>
+      <p>Season-end reports on water use, nutrient inputs, and yield correlation to fine-tune next season's program.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ───────────────────────────────────── -->
+<section id="process">
+  <div class="text-center">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">Up and Running in 4 Simple Steps</h2>
+    <p class="section-subtitle">Our streamlined onboarding gets your fertigation system operational quickly with zero downtime to your existing operation.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Site Assessment</h3>
+      <p>We evaluate your soil, water source, crops, and existing irrigation infrastructure at no charge.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Custom Design</h3>
+      <p>Our engineers produce a detailed system plan and nutrient program sized for your exact operation.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Installation</h3>
+      <p>Certified technicians install and commission your system, integrating with existing drip or irrigation lines.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Ongoing Optimization</h3>
+      <p>We monitor performance data and adjust feeding programs throughout the season for maximum results.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── BENEFITS ──────────────────────────────────── -->
+<section id="benefits">
+  <div class="text-center">
+    <span class="section-label" style="color:var(--green-light);">Why Fertigation</span>
+    <h2 class="section-title">Results You Can Measure</h2>
+    <p class="section-subtitle">Fertigation delivers nutrients directly to the root zone, where your crops need them most.</p>
+  </div>
+  <div class="benefits-grid">
+    <div class="benefit-card">
+      <div class="benefit-icon">💧</div>
+      <h3>Water Efficiency</h3>
+      <p>Drip-based fertigation uses up to 35% less water than broadcast irrigation, reducing your water bill and environmental footprint.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🌾</div>
+      <h3>Higher Yields</h3>
+      <p>Precise timing and placement of nutrients during critical growth windows consistently produces 15–30% yield increases.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">💰</div>
+      <h3>Lower Input Costs</h3>
+      <p>Cut fertilizer use by 20–30% by eliminating broadcast waste and runoff — nutrients go to the plant, not the ground.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🌍</div>
+      <h3>Environmental Compliance</h3>
+      <p>Reduce nitrate leaching and runoff, helping you stay ahead of water-quality regulations and sustainability goals.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">🤖</div>
+      <h3>Automation & Labor Savings</h3>
+      <p>Automated injection and scheduling free your team from manual fertigation tasks, reducing labor hours significantly.</p>
+    </div>
+    <div class="benefit-card">
+      <div class="benefit-icon">📈</div>
+      <h3>Crop Quality</h3>
+      <p>Consistent nutrient delivery improves produce uniformity, shelf life, and Brix scores — commanding premium market prices.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ──────────────────────────────── -->
+<section id="testimonials">
+  <div class="text-center">
+    <span class="section-label">Client Results</span>
+    <h2 class="section-title">Trusted by Growers Across the Region</h2>
+    <p class="section-subtitle">Don't take our word for it — here's what our growers are saying after their first full season.</p>
+  </div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"AquaFeed's system paid for itself in the first season. We cut our fertilizer spend by 26% and our tomato yield was the best we've ever had. The mobile monitoring app alone is worth it."</blockquote>
+      <div class="testimonial-author">
+        <div class="avatar">MR</div>
+        <div class="author-info">
+          <strong>Marcus R.</strong>
+          <span>Greenhouse Tomato Grower, 18 acres</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Installation was seamless and the team walked us through everything. Our water usage dropped 32% and the crops look healthier at every growth stage. Highly recommend."</blockquote>
+      <div class="testimonial-author">
+        <div class="avatar">SL</div>
+        <div class="author-info">
+          <strong>Sofia L.</strong>
+          <span>Strawberry Farm Manager, 45 acres</span>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <blockquote>"We were skeptical at first, but the soil reports and real-time data convinced us quickly. Pepper quality improved noticeably and we qualified for a water-efficiency rebate thanks to AquaFeed."</blockquote>
+      <div class="testimonial-author">
+        <div class="avatar">DK</div>
+        <div class="author-info">
+          <strong>David K.</strong>
+          <span>Pepper & Cucumber Grower, 90 acres</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACT ───────────────────────────────────── -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <span class="section-label">Contact Us</span>
+      <h2>Get Your Free Site Assessment</h2>
+      <p>Fill out the form and one of our agronomists will reach out within one business day to schedule your no-obligation site visit and system proposal.</p>
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <span>(800) 555-0172</span>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <span>info@aquafeedsolutions.com</span>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <span>123 Irrigation Way, Fresno, CA 93701</span>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">🕐</div>
+        <span>Mon – Fri: 7 AM – 6 PM | Sat: 8 AM – 2 PM</span>
+      </div>
+    </div>
+    <form id="contactForm" novalidate>
+      <div class="form-row">
+        <input type="text" name="firstName" placeholder="First Name" required />
+        <input type="text" name="lastName" placeholder="Last Name" required />
+      </div>
+      <input type="email" name="email" placeholder="Email Address" required />
+      <input type="tel" name="phone" placeholder="Phone Number" />
+      <input type="text" name="farm" placeholder="Farm / Operation Name" />
+      <select name="cropType">
+        <option value="" disabled selected>Primary Crop Type</option>
+        <option>Vegetables (field)</option>
+        <option>Vegetables (greenhouse)</option>
+        <option>Berries &amp; Small Fruits</option>
+        <option>Tree Fruits / Nuts</option>
+        <option>Row Crops (corn, soy, etc.)</option>
+        <option>Nursery / Ornamental</option>
+        <option>Other</option>
+      </select>
+      <select name="acreage">
+        <option value="" disabled selected>Total Irrigated Acreage</option>
+        <option>Under 5 acres</option>
+        <option>5 – 25 acres</option>
+        <option>26 – 100 acres</option>
+        <option>101 – 500 acres</option>
+        <option>500+ acres</option>
+      </select>
+      <textarea name="message" placeholder="Tell us about your current irrigation setup or any specific challenges…"></textarea>
+      <p class="form-note">We respect your privacy and will never share your information.</p>
+      <button type="submit" class="btn btn-primary">Request Free Assessment →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ────────────────────────────────────── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo-icon">💧</div>
+      <div style="font-size:1.1rem;font-weight:700;color:#fff;display:inline-block;margin-left:8px;vertical-align:middle;">AquaFeed Solutions</div>
+      <p>Precision fertigation systems designed to maximize crop yield, conserve water, and reduce fertilizer costs for growers of every scale.</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Soil & Water Analysis</a></li>
+        <li><a href="#services">System Design</a></li>
+        <li><a href="#services">Installation</a></li>
+        <li><a href="#services">Smart Monitoring</a></li>
+        <li><a href="#services">Maintenance</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Our Team</a></li>
+        <li><a href="#">Case Studies</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Careers</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Fertigation Guide</a></li>
+        <li><a href="#">ROI Calculator</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 AquaFeed Solutions. All rights reserved.</span>
+    <span>
+      <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none;margin-right:16px;">Privacy Policy</a>
+      <a href="#" style="color:rgba(255,255,255,0.5);text-decoration:none;">Terms of Service</a>
+    </span>
+  </div>
+</footer>
+
+<div id="toast">✅ Thank you! We'll be in touch within one business day.</div>
+
+<script>
+  // Mobile nav toggle
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+  // Close nav on link click (mobile)
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Smooth scroll offset for sticky nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 76;
+        window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - offset, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Contact form toast
+  const form = document.getElementById('contactForm');
+  const toast = document.getElementById('toast');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(field => {
+      if (!field.value.trim()) {
+        field.style.borderColor = '#e53935';
+        valid = false;
+      } else {
+        field.style.borderColor = '';
+      }
+    });
+    if (!valid) return;
+
+    toast.classList.add('show');
+    form.reset();
+    setTimeout(() => toast.classList.remove('show'), 4000);
+  });
+</script>
+</body>
+</html>
