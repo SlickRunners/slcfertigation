@@ -11,6 +11,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mr. Fertigation — Premium Fertigation for Salt Lake City & Park City</title>
+  <meta name="description" content="Automated fertigation installed in one day. We connect to your existing sprinkler system to feed your lawn on every cycle — guaranteed visible results in 90 days. Serving Salt Lake City &amp; Park City, Utah." />
+  <link rel="canonical" href="https://mrfertigation.com/" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Mr. Fertigation" />
+  <meta property="og:title" content="Mr. Fertigation — Premium Fertigation for Salt Lake City & Park City" />
+  <meta property="og:description" content="Automated fertigation installed in one day. We connect to your existing sprinkler system to feed your lawn on every cycle — guaranteed visible results in 90 days." />
+  <meta property="og:url" content="https://mrfertigation.com/" />
+  <meta property="og:image" content="https://mrfertigation.com/hero-home.jpg" />
+  <meta property="og:image:width" content="1536" />
+  <meta property="og:image:height" content="1024" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mr. Fertigation — Premium Fertigation for Salt Lake City & Park City" />
+  <meta name="twitter:description" content="Automated fertigation installed in one day. We connect to your existing sprinkler system to feed your lawn on every cycle — guaranteed visible results in 90 days." />
+  <meta name="twitter:image" content="https://mrfertigation.com/hero-home.jpg" />
+
+  <meta name="theme-color" content="#1A1F1C" />
+  <link rel="icon" href="Mr-Fertigation-Horizontal-Logo.png" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -632,6 +656,49 @@
       line-height: 1.8;
     }
 
+    /* ─── FAQ ─────────────────────────────────── */
+    .faq { background: var(--bg); }
+
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid rgba(45,80,22,0.15);
+      border-radius: var(--radius);
+      padding: 4px 24px;
+    }
+
+    .faq-item summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 20px 28px 20px 0;
+      font-weight: 600;
+      font-size: 0.98rem;
+      position: relative;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: '+';
+      position: absolute;
+      right: 0;
+      top: 18px;
+      font-size: 1.4rem;
+      color: var(--gold);
+      font-weight: 400;
+      transition: transform 0.2s;
+    }
+
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+
+    .faq-item p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      padding-bottom: 22px;
+    }
+
     /* ─── BEFORE / AFTER SLIDER ──────────────── */
     .before-after-section { background: var(--dark); }
 
@@ -856,6 +923,109 @@
       .nav-right a:not(.nav-cta) { display: none; }
     }
   </style>
+
+  <!-- Structured Data: LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://mrfertigation.com/#business",
+    "name": "Mr. Fertigation",
+    "image": "https://mrfertigation.com/hero-home.jpg",
+    "url": "https://mrfertigation.com/",
+    "telephone": "+1-385-218-0162",
+    "priceRange": "$$$",
+    "description": "Automated fertigation installation for residential lawns. We connect to your existing sprinkler system to feed your lawn liquid nutrients on every watering cycle — installed in one day, with a 90-day healthy lawn guarantee.",
+    "areaServed": [
+      { "@type": "City", "name": "Salt Lake City", "containedInPlace": { "@type": "State", "name": "Utah" } },
+      { "@type": "City", "name": "Park City", "containedInPlace": { "@type": "State", "name": "Utah" } }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "UT",
+      "addressCountry": "US"
+    }
+  }
+  </script>
+
+  <!-- Structured Data: Service -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Lawn Fertigation Installation",
+    "provider": { "@id": "https://mrfertigation.com/#business" },
+    "areaServed": [
+      { "@type": "City", "name": "Salt Lake City" },
+      { "@type": "City", "name": "Park City" }
+    ],
+    "description": "Professional-grade fertigation system installation connected to an existing residential irrigation system, including a smart WiFi controller upgrade, precision rotary nozzle retrofit, custom nutrition blueprint, and one year of fertilizer refills and maintenance.",
+    "offers": {
+      "@type": "Offer",
+      "price": "3997",
+      "priceCurrency": "USD",
+      "description": "One-time installation investment; first year of service included. $100/month subscription thereafter."
+    }
+  }
+  </script>
+
+  <!-- Structured Data: FAQPage -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is fertigation?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fertigation is the delivery of liquid fertilizer directly through an irrigation system so a lawn is fed automatically every time it waters. It's the same technology golf courses and commercial groundskeepers have used for decades, now installed on residential sprinkler systems."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does installation take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Installation is completed in one day. The system connects to your existing irrigation lines — no new lines or major excavation required — and your first feeding happens less than 24 hours after install."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does fertigation cost?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Installation is a one-time investment of $3,997, which includes the fertigation system, a smart WiFi controller upgrade, a full sprinkler nozzle retrofit, and a full first year of fertilizer refills and maintenance. After year one, service continues at $100/month."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a guarantee?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Mr. Fertigation offers a 90-Day Healthy Lawn Guarantee: if you don't see visible improvement in your lawn within 90 days of installation, they return to diagnose and resolve the issue at no charge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where does Mr. Fertigation provide service?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Mr. Fertigation serves residential properties in Salt Lake City and Park City, Utah."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does fertigation save water?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Because fertigation is paired with a smart controller and precision rotary nozzles, the system reduces water waste and dry spots while using the existing irrigation schedule more efficiently, resulting in a greener lawn with less water than hand-fertilizing and standard sprinkler heads."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -869,6 +1039,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="nav-right">
     <a href="#solution">How It Works</a>
     <a href="#what-included">What's Included</a>
+    <a href="#faq">FAQ</a>
     <a href="tel:3852180162" class="nav-cta">Free Assessment →</a>
   </div>
 </nav>
@@ -1115,6 +1286,42 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <p style="margin-top:24px;">
       If you don't see a visible improvement in your lawn within 90 days of installation, we'll return to diagnose and resolve the issue at no charge. No fine print. No runaround. We're confident in the system — and we back it completely.
     </p>
+  </div>
+</section>
+
+<!-- ── FAQ ─────────────────────────────────────────── -->
+<section class="faq section" id="faq" aria-labelledby="faq-heading">
+  <div class="container-narrow">
+    <div class="text-center" style="text-align:center;margin-bottom:48px;">
+      <span class="eyebrow">Questions</span>
+      <h2 class="display" id="faq-heading" style="font-size:clamp(1.9rem,3.5vw,2.8rem);margin-top:12px;">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item fade-up">
+        <summary>What is fertigation?</summary>
+        <p>Fertigation is the delivery of liquid fertilizer directly through an irrigation system so a lawn is fed automatically every time it waters. It's the same technology golf courses and commercial groundskeepers have used for decades, now installed on residential sprinkler systems.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>How long does installation take?</summary>
+        <p>Installation is completed in one day. The system connects to your existing irrigation lines — no new lines or major excavation required — and your first feeding happens less than 24 hours after install.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>How much does fertigation cost?</summary>
+        <p>Installation is a one-time investment of $3,997, which includes the fertigation system, a smart WiFi controller upgrade, a full sprinkler nozzle retrofit, and a full first year of fertilizer refills and maintenance. After year one, service continues at $100/month.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>Is there a guarantee?</summary>
+        <p>Yes. Mr. Fertigation offers a 90-Day Healthy Lawn Guarantee: if you don't see visible improvement in your lawn within 90 days of installation, we return to diagnose and resolve the issue at no charge.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>Where does Mr. Fertigation provide service?</summary>
+        <p>We serve residential properties in Salt Lake City and Park City, Utah.</p>
+      </details>
+      <details class="faq-item fade-up">
+        <summary>Does fertigation save water?</summary>
+        <p>Yes. Because fertigation is paired with a smart controller and precision rotary nozzles, the system reduces water waste and dry spots while using your existing irrigation schedule more efficiently — resulting in a greener lawn with less water than hand-fertilizing and standard sprinkler heads.</p>
+      </details>
+    </div>
   </div>
 </section>
 

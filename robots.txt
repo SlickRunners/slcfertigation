@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /free-soil-test
+
+Sitemap: https://mrfertigation.com/sitemap.xml
