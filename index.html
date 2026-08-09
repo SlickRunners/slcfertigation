@@ -661,6 +661,7 @@
     }
 
     .stack-card {
+      position: relative;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-lg);
@@ -669,6 +670,39 @@
       flex-direction: column;
       gap: 16px;
       transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
+    }
+
+    .stack-value {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      color: var(--gold);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 5px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .stack-card--wide .stack-value {
+      position: static;
+    }
+
+    .stack-card--wide-body {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-width: 0;
+    }
+
+    .stack-card--wide-title {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     .stack-card:hover {
@@ -708,11 +742,6 @@
 
     .stack-card--wide .stack-icon {
       flex-shrink: 0;
-    }
-
-    .stack-card--wide strong {
-      flex-shrink: 0;
-      width: 200px;
     }
 
     .stack-card--wide p {
@@ -765,6 +794,55 @@
       padding: 10px 0;
       border-top: 1px solid rgba(201, 168, 76, 0.2);
       background: rgba(201, 168, 76, 0.08);
+    }
+
+    /* ─── VALUE STACK TOTAL / PRICE REVEAL ────── */
+    .stack-total {
+      text-align: center;
+      background: linear-gradient(135deg, rgba(201, 168, 76, 0.14) 0%, rgba(201, 168, 76, 0.04) 100%);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 40px 24px;
+      margin-bottom: 24px;
+    }
+
+    .stack-total-value {
+      font-size: 1.1rem;
+      color: rgba(255, 255, 255, 0.65);
+      text-decoration: line-through;
+      text-decoration-color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 10px;
+    }
+
+    .stack-total-value span {
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .stack-total-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3.2vw, 2.4rem);
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .stack-total-price span {
+      color: var(--gold);
+    }
+
+    /* ─── VALUE STACK URGENCY + CTA ────────────── */
+    .stack-urgency {
+      text-align: center;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 560px;
+      margin: 28px auto 0;
+      line-height: 1.6;
+    }
+
+    .stack-cta {
+      text-align: center;
+      margin-top: 24px;
     }
 
     /* ─── VALUE STACK GUARANTEE BANNER ────────── */
@@ -852,10 +930,6 @@
         grid-column: span 1;
         flex-direction: column;
         align-items: flex-start;
-      }
-
-      .stack-card--wide strong {
-        width: auto;
       }
 
       .stack-guarantee {
@@ -1310,7 +1384,7 @@
     "description": "Professional-grade fertigation system installation connected to an existing residential irrigation system, including a smart WiFi controller upgrade, precision rotary nozzle retrofit, custom nutrition blueprint, and one year of fertilizer refills and maintenance.",
     "offers": {
       "@type": "Offer",
-      "price": "3997",
+      "price": "4997",
       "priceCurrency": "USD",
       "description": "One-time installation investment; first year of service included. $100/month subscription thereafter."
     }
@@ -1344,7 +1418,7 @@
         "name": "How much does fertigation cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Installation is a one-time investment of $3,997, which includes the fertigation system, a smart WiFi controller upgrade, a full sprinkler nozzle retrofit, and a full first year of fertilizer refills and maintenance. After year one, service continues at $100/month."
+          "text": "The Autopilot Lawn System is a one-time investment of $4,997, covering the full install — smart WiFi controller, fertigation system, sprinkler head replacement and tuning, soil diagnostic and custom fertilizer recipe, setup session — plus a full first year of fertilizer refills and maintenance, backed by a 90-day guarantee. After year one, service continues at $100/month."
         }
       },
       {
@@ -1352,7 +1426,7 @@
         "name": "Is there a guarantee?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Yes. Mr. Fertigation offers a 90-Day Healthy Lawn Guarantee: if you don't see visible improvement in your lawn within 90 days of installation, they return to diagnose and resolve the issue at no charge."
+          "text": "Yes. Mr. Fertigation offers a 90-Day Healthy Lawn Guarantee: if your lawn isn't visibly greener within 90 days, they come back and fix it — free — until it is. No diagnosis, no runaround, no fine print."
         }
       },
       {
@@ -1526,6 +1600,7 @@
 
       <div class="stack-grid">
         <div class="stack-card fade-up">
+          <span class="stack-value" aria-label="Value: $250">$250 value</span>
           <div class="stack-icon" aria-hidden="true">📱</div>
           <strong>Smart Controller Install</strong>
           <p>Wi-Fi-enabled controller with weather-adjusted watering — no more over/under-watering, no more manually
@@ -1533,29 +1608,34 @@
         </div>
 
         <div class="stack-card fade-up" style="transition-delay:0.05s">
+          <span class="stack-value" aria-label="Value: $2,500">$2,500 value</span>
           <div class="stack-icon" aria-hidden="true">⚙️</div>
           <strong>Fertigation System Install</strong>
           <p>Automated liquid nutrient delivery straight through your irrigation lines, feeding your lawn on a
-            schedule instead of relying on manual spreading (or forgetting entirely).</p>
+            schedule instead of relying on manual spreading (or forgetting entirely) — including code-compliant
+            backflow protection, done right the first time.</p>
         </div>
 
         <div class="stack-card fade-up" style="transition-delay:0.1s">
-          <div class="stack-icon" aria-hidden="true">🛡️</div>
-          <strong>Backflow Preventer Install</strong>
-          <p>Code-compliant protection for your home's water supply — required for safe fertigation, done right the
-            first time.</p>
-        </div>
-
-        <div class="stack-card fade-up" style="transition-delay:0.15s">
+          <span class="stack-value" aria-label="Value: $600">$600 value</span>
           <div class="stack-icon" aria-hidden="true">💦</div>
           <strong>Sprinkler Head Replacement &amp; Tuning</strong>
           <p>Every head inspected, replaced where worn, and tuned for even coverage — eliminating dry patches,
             runoff, and wasted water.</p>
         </div>
 
+        <div class="stack-card fade-up" style="transition-delay:0.15s">
+          <span class="stack-value" aria-label="Value: $480">$480 value</span>
+          <div class="stack-icon" aria-hidden="true">📅</div>
+          <strong>Year One Included Service</strong>
+          <p>A full year of fertilizer refills, system monitoring, and seasonal recalibration — included in your
+            install, not billed separately.</p>
+        </div>
+
         <!-- Soil Diagnostic → Custom Fertilizer Recipe: connected pair, cause and effect -->
         <div class="stack-pair fade-up" style="transition-delay:0.2s">
           <div class="stack-card">
+            <span class="stack-value" aria-label="Value: $150">$150 value</span>
             <div class="stack-icon" aria-hidden="true">🧪</div>
             <strong>Soil Diagnostic</strong>
             <p>We test your soil before we touch anything, so your system is calibrated to your yard's actual pH
@@ -1563,6 +1643,7 @@
           </div>
           <div class="stack-pair-arrow" aria-hidden="true">→</div>
           <div class="stack-card">
+            <span class="stack-value" aria-label="Value: $200">$200 value</span>
             <div class="stack-icon" aria-hidden="true">🌿</div>
             <strong>Custom Fertilizer Recipe</strong>
             <p>A nutrient blend formulated specifically for your soil test results and grass type — not a generic
@@ -1573,17 +1654,37 @@
 
         <div class="stack-card stack-card--wide fade-up" style="transition-delay:0.25s">
           <div class="stack-icon" aria-hidden="true">💬</div>
-          <strong>Onboarding Session</strong>
-          <p>A walkthrough of your new system so you know exactly what it's doing and why — no black box.</p>
+          <div class="stack-card--wide-body">
+            <div class="stack-card--wide-title">
+              <strong>Autopilot Setup Session</strong>
+              <span class="stack-value" aria-label="Value: $150">$150 value</span>
+            </div>
+            <p>A personal walkthrough so your system runs itself — you'll never have to think about a dial, a
+              schedule, or a bag of fertilizer again.</p>
+          </div>
         </div>
+      </div>
+
+      <div class="stack-total fade-up">
+        <div class="stack-total-value">Total value: <span>$4,330</span></div>
+        <div class="stack-total-price">Your investment today: <span>$4,997</span></div>
       </div>
 
       <div class="stack-guarantee fade-up">
         <div class="stack-guarantee-badge" aria-hidden="true">90<br>DAYS</div>
         <p>
-          <strong>90 days.</strong> If your lawn isn't visibly greener and your water use hasn't dropped, we come
-          back and make it right at no charge.
+          <strong>If your lawn isn't visibly greener within 90 days, we come back and fix it — free — until it is.</strong>
+          No diagnosis, no runaround, no fine print.
         </p>
+      </div>
+
+      <p class="stack-urgency fade-up">
+        Install before peak summer heat to see results this season — installation slots are limited during peak
+        months.
+      </p>
+
+      <div class="stack-cta fade-up">
+        <a href="#free-assessment" class="btn btn-gold">Check Install Availability →</a>
       </div>
     </div>
   </section>
@@ -1593,11 +1694,10 @@
     <div class="container">
       <div class="subscription-box fade-up">
         <span class="eyebrow" style="color:var(--green);">After Year One</span>
-        <h2 class="display" id="sub-heading" style="margin-top:12px;">Your First Year Is Fully Covered.</h2>
+        <h2 class="display" id="sub-heading" style="margin-top:12px;">What Happens After Year One</h2>
         <p>
-          Your first year of fertilizer refills, system monitoring, and seasonal calibration is included in your install
-          investment. After year one, the Mr. Fertigation subscription continues — covering ongoing refills, annual
-          recalibration, and priority service.
+          Once your included first year ends, the Mr. Fertigation subscription continues — covering ongoing refills,
+          annual recalibration, and priority service.
         </p>
         <p>Most clients keep it running indefinitely because the lawn speaks for itself.</p>
       </div>
@@ -1611,9 +1711,8 @@
       <span class="eyebrow" style="color:var(--gold);display:block;margin-bottom:16px;">Our Promise</span>
       <h2 class="display" id="guarantee-heading">90-Day Healthy Lawn Guarantee</h2>
       <p style="margin-top:24px;">
-        If you don't see a visible improvement in your lawn within 90 days of installation, we'll return to diagnose and
-        resolve the issue at no charge. No fine print. No runaround. We're confident in the system — and we back it
-        completely.
+        If your lawn isn't visibly greener within 90 days, we come back and fix it — free — until it is. No
+        diagnosis, no runaround, no fine print. We're confident in the system — and we back it completely.
       </p>
     </div>
   </section>
@@ -1640,13 +1739,13 @@
         </details>
         <details class="faq-item fade-up">
           <summary>How much does fertigation cost?</summary>
-          <p>Installation is a one-time investment, which includes the fertigation system, a smart WiFi
-            controller upgrade, and a full sprinkler nozzle retrofit. Call us today to learn more!</p>
+          <p>The Autopilot Lawn System is a one-time investment of $4,997 — covering the full install, your first
+            year of service, and a 90-day guarantee. See the full breakdown above.</p>
         </details>
         <details class="faq-item fade-up">
           <summary>Is there a guarantee?</summary>
-          <p>Yes. Mr. Fertigation offers a 90-Day Healthy Lawn Guarantee: if you don't see visible improvement in your
-            lawn within 90 days of installation, we return to diagnose and resolve the issue at no charge.</p>
+          <p>Yes. Mr. Fertigation offers a 90-Day Healthy Lawn Guarantee: if your lawn isn't visibly greener within
+            90 days, we come back and fix it — free — until it is. No diagnosis, no runaround, no fine print.</p>
         </details>
         <details class="faq-item fade-up">
           <summary>Where does Mr. Fertigation provide service?</summary>
