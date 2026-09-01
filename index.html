@@ -504,6 +504,128 @@
       flex-shrink: 0;
     }
 
+    /* ─── WATER SAVINGS ─────────────────────────── */
+    .water-savings {
+      background: var(--dark);
+    }
+
+    .water-savings .eyebrow {
+      color: var(--gold);
+    }
+
+    .water-savings-intro {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .water-savings-intro h2 {
+      color: var(--white);
+    }
+
+    .water-savings-intro p {
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-top: 16px;
+    }
+
+    .water-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin: 56px 0;
+    }
+
+    .water-stat {
+      text-align: center;
+      padding: 32px 20px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      border-radius: var(--radius-lg);
+    }
+
+    .water-stat-value {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-style: italic;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      background: linear-gradient(100deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 8px;
+    }
+
+    .water-stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.5;
+    }
+
+    .water-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .water-step {
+      position: relative;
+      padding: 36px 28px;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: var(--radius-lg);
+    }
+
+    .water-step-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(201, 168, 76, 0.15);
+      border: 1px solid rgba(201, 168, 76, 0.5);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 20px;
+    }
+
+    .water-step strong {
+      display: block;
+      color: var(--white);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .water-step p {
+      color: rgba(255, 255, 255, 0.68);
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 900px) {
+      .water-stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .water-steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .water-stats {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
     /* ─── 4. VALUE STACK ──────────────────────── */
     .value-stack {
       background: var(--dark);
@@ -649,6 +771,97 @@
       margin-bottom: 56px;
     }
 
+    /* ─── PRIMARY PRODUCT: FERTIGATION INSTALL ── */
+    .stack-primary-wrap {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .stack-card--primary {
+      position: relative;
+      max-width: 560px;
+      width: 100%;
+      align-items: center;
+      text-align: center;
+      padding: 48px 48px 40px;
+      background: linear-gradient(160deg, rgba(201, 168, 76, 0.14) 0%, rgba(255, 255, 255, 0.04) 100%);
+      border: 1px solid rgba(201, 168, 76, 0.55);
+      box-shadow: 0 0 0 1px rgba(201, 168, 76, 0.08), 0 24px 60px -20px rgba(201, 168, 76, 0.35);
+    }
+
+    .stack-card--primary:hover {
+      transform: translateY(-3px);
+      border-color: rgba(201, 168, 76, 0.75);
+    }
+
+    .stack-primary-badge {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    .stack-card--primary .stack-icon {
+      width: 64px;
+      height: 64px;
+      font-size: 1.7rem;
+      background: rgba(201, 168, 76, 0.18);
+      border-color: rgba(201, 168, 76, 0.5);
+    }
+
+    .stack-card--primary strong {
+      font-size: 1.7rem;
+    }
+
+    .stack-card--primary p {
+      font-size: 0.98rem;
+      max-width: 420px;
+    }
+
+    .stack-primary-price {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 8px;
+    }
+
+    .stack-included-lead {
+      text-align: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 24px;
+    }
+
+    .stack-free-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(45, 80, 22, 0.35);
+      border: 1px solid rgba(122, 200, 90, 0.55);
+      color: #9ee08a;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      padding: 5px 11px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .stack-card--wide .stack-free-badge {
+      position: static;
+    }
+
     .stack-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
@@ -715,6 +928,11 @@
       width: 52px;
       height: 52px;
       font-size: 1.35rem;
+      margin-top: 28px;
+    }
+
+    .stack-card--wide .stack-icon {
+      margin-top: 0;
     }
 
     .stack-card strong {
@@ -936,6 +1154,10 @@
         flex-direction: column;
         text-align: center;
         padding: 32px 24px;
+      }
+
+      .stack-card--primary {
+        padding: 36px 28px 32px;
       }
     }
 
@@ -1384,7 +1606,7 @@
     "description": "Professional-grade fertigation system installation connected to an existing residential irrigation system, including a smart WiFi controller upgrade, precision rotary nozzle retrofit, custom nutrition blueprint, and one year of fertilizer refills and maintenance.",
     "offers": {
       "@type": "Offer",
-      "price": "4997",
+      "price": "3999",
       "priceCurrency": "USD",
       "description": "One-time installation investment; first year of service included. $100/month subscription thereafter."
     }
@@ -1418,7 +1640,7 @@
         "name": "How much does fertigation cost?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The Autopilot Lawn System is a one-time investment of $4,997, covering the full install — smart WiFi controller, fertigation system, sprinkler head replacement and tuning, soil diagnostic and custom fertilizer recipe, setup session — plus a full first year of fertilizer refills and maintenance, backed by a 90-day guarantee. After year one, service continues at $100/month."
+          "text": "The Autopilot Lawn System is a one-time investment of $3,999, covering the full install — smart WiFi controller, fertigation system, sprinkler head replacement and tuning, soil diagnostic and custom fertilizer recipe, setup session — plus a full first year of fertilizer refills and maintenance, backed by a 90-day guarantee. After year one, service continues at $100/month."
         }
       },
       {
@@ -1548,6 +1770,59 @@
     </div>
   </section>
 
+  <!-- ── WATER SAVINGS ─────────────────────────────── -->
+  <section class="water-savings section" id="water-savings" aria-labelledby="water-savings-heading">
+    <div class="container">
+      <div class="water-savings-intro fade-up">
+        <span class="eyebrow">Why Deeper Roots Mean Less Watering</span>
+        <h2 class="display" id="water-savings-heading">Healthier Plants Need Less Water</h2>
+        <p>
+          Traditional fertilizer sits on the soil surface, so roots never have a reason to grow past 2-4 inches.
+          Fertigation delivers nutrients through your irrigation water instead, drawing roots 8-12+ inches deep
+          to reach moisture reserves shallow roots can't touch. Deeper roots stay hydrated longer between
+          waterings — which means 25-50% less water to maintain the same lush, green landscape.
+        </p>
+      </div>
+
+      <div class="water-stats">
+        <div class="water-stat fade-up">
+          <span class="water-stat-value">25-50%</span>
+          <span class="water-stat-label">Annual water savings</span>
+        </div>
+        <div class="water-stat fade-up" style="transition-delay:0.05s">
+          <span class="water-stat-value">8-12+ in</span>
+          <span class="water-stat-label">Root depth vs. 2-4 in with traditional fertilizing</span>
+        </div>
+        <div class="water-stat fade-up" style="transition-delay:0.1s">
+          <span class="water-stat-value">98%</span>
+          <span class="water-stat-label">Nutrient absorption vs. 15-20% traditional</span>
+        </div>
+        <div class="water-stat fade-up" style="transition-delay:0.15s">
+          <span class="water-stat-value">5-7 days</span>
+          <span class="water-stat-label">Summer watering interval vs. every 2-3 days</span>
+        </div>
+      </div>
+
+      <div class="water-steps">
+        <div class="water-step fade-up">
+          <div class="water-step-num" aria-hidden="true">1</div>
+          <strong>Micro-Dose Delivery</strong>
+          <p>Every irrigation cycle delivers a small, precise dose of nutrients throughout the root zone.</p>
+        </div>
+        <div class="water-step fade-up" style="transition-delay:0.05s">
+          <div class="water-step-num" aria-hidden="true">2</div>
+          <strong>Roots Grow Deep</strong>
+          <p>Nutrients placed deeper in the soil draw roots downward to access deeper water reserves.</p>
+        </div>
+        <div class="water-step fade-up" style="transition-delay:0.1s">
+          <div class="water-step-num" aria-hidden="true">3</div>
+          <strong>Less Water Required</strong>
+          <p>Extensive root systems pull moisture from a larger volume of soil, cutting how often you need to water.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── BEFORE / AFTER ────────────────────────────── -->
   <section class="before-after-section section" aria-labelledby="ba-heading">
     <div class="container">
@@ -1598,9 +1873,24 @@
         under 24 hours.
       </p>
 
+      <div class="stack-primary-wrap fade-up">
+        <div class="stack-card stack-card--primary">
+          <span class="stack-primary-badge">Core Product</span>
+          <div class="stack-icon" aria-hidden="true">⚙️</div>
+          <strong>Fertigation System Install</strong>
+          <p>Automated liquid nutrient delivery straight through your irrigation lines, feeding your lawn on a
+            schedule instead of relying on manual spreading (or forgetting entirely) — including code-compliant
+            backflow protection, done right the first time.</p>
+          <span class="stack-primary-price" aria-label="Price: $3,999">$3,999</span>
+        </div>
+      </div>
+
+      <p class="stack-included-lead fade-up">Every install also includes, at no additional cost:</p>
+
       <div class="stack-grid">
         <div class="stack-card fade-up">
           <span class="stack-value" aria-label="Value: $250">$250 value</span>
+          <span class="stack-free-badge">Free — Included</span>
           <div class="stack-icon" aria-hidden="true">📱</div>
           <strong>Smart Controller Install</strong>
           <p>Wi-Fi-enabled controller with weather-adjusted watering — no more over/under-watering, no more manually
@@ -1608,34 +1898,19 @@
         </div>
 
         <div class="stack-card fade-up" style="transition-delay:0.05s">
-          <span class="stack-value" aria-label="Value: $3,500">$3,500 value</span>
-          <div class="stack-icon" aria-hidden="true">⚙️</div>
-          <strong>Fertigation System Install</strong>
-          <p>Automated liquid nutrient delivery straight through your irrigation lines, feeding your lawn on a
-            schedule instead of relying on manual spreading (or forgetting entirely) — including code-compliant
-            backflow protection, done right the first time.</p>
-        </div>
-
-        <div class="stack-card fade-up" style="transition-delay:0.1s">
           <span class="stack-value" aria-label="Value: $600">$600 value</span>
+          <span class="stack-free-badge">Free — Included</span>
           <div class="stack-icon" aria-hidden="true">💦</div>
           <strong>Sprinkler Head Replacement &amp; Tuning</strong>
           <p>Every head inspected, replaced where worn, and tuned for even coverage — eliminating dry patches,
             runoff, and wasted water.</p>
         </div>
 
-        <div class="stack-card fade-up" style="transition-delay:0.15s">
-          <span class="stack-value" aria-label="Value: $480">$480 value</span>
-          <div class="stack-icon" aria-hidden="true">📅</div>
-          <strong>Year One Included Service</strong>
-          <p>A full year of fertilizer refills, system monitoring, and seasonal recalibration — included in your
-            install, not billed separately.</p>
-        </div>
-
         <!-- Soil Diagnostic → Custom Fertilizer Recipe: connected pair, cause and effect -->
-        <div class="stack-pair fade-up" style="transition-delay:0.2s">
+        <div class="stack-pair fade-up" style="transition-delay:0.1s">
           <div class="stack-card">
             <span class="stack-value" aria-label="Value: $150">$150 value</span>
+            <span class="stack-free-badge">Free — Included</span>
             <div class="stack-icon" aria-hidden="true">🧪</div>
             <strong>Soil Diagnostic</strong>
             <p>We test your soil before we touch anything, so your system is calibrated to your yard's actual pH
@@ -1644,6 +1919,7 @@
           <div class="stack-pair-arrow" aria-hidden="true">→</div>
           <div class="stack-card">
             <span class="stack-value" aria-label="Value: $200">$200 value</span>
+            <span class="stack-free-badge">Free — Included</span>
             <div class="stack-icon" aria-hidden="true">🌿</div>
             <strong>Custom Fertilizer Recipe</strong>
             <p>A nutrient blend formulated specifically for your soil test results and grass type — not a generic
@@ -1652,12 +1928,22 @@
           <div class="stack-pair-label">Derived from your soil diagnostic</div>
         </div>
 
-        <div class="stack-card stack-card--wide fade-up" style="transition-delay:0.25s">
+        <div class="stack-card fade-up" style="transition-delay:0.15s">
+          <span class="stack-value" aria-label="Value: $480">$480 value</span>
+          <span class="stack-free-badge">Free — Included</span>
+          <div class="stack-icon" aria-hidden="true">📅</div>
+          <strong>Year One Included Service</strong>
+          <p>A full year of fertilizer refills, system monitoring, and seasonal recalibration — included in your
+            install, not billed separately.</p>
+        </div>
+
+        <div class="stack-card stack-card--wide fade-up" style="transition-delay:0.2s">
           <div class="stack-icon" aria-hidden="true">💬</div>
           <div class="stack-card--wide-body">
             <div class="stack-card--wide-title">
               <strong>Autopilot Setup Session</strong>
               <span class="stack-value" aria-label="Value: $150">$150 value</span>
+              <span class="stack-free-badge">Free — Included</span>
             </div>
             <p>A personal walkthrough so your system runs itself — you'll never have to think about a dial, a
               schedule, or a bag of fertilizer again.</p>
@@ -1666,14 +1952,15 @@
       </div>
 
       <div class="stack-total fade-up">
-        <div class="stack-total-value">Total value: <span>$5,330</span></div>
-        <div class="stack-total-price">Your investment today: <span>$4,997</span></div>
+        <div class="stack-total-value">Total value: <span>$5,829</span></div>
+        <div class="stack-total-price">Your investment today: <span>$3,999</span></div>
       </div>
 
       <div class="stack-guarantee fade-up">
         <div class="stack-guarantee-badge" aria-hidden="true">90<br>DAYS</div>
         <p>
-          <strong>If your lawn isn't visibly greener within 90 days, we come back and fix it — free — until it is.</strong>
+          <strong>If your lawn isn't visibly greener within 90 days, we come back and fix it — free — until it
+            is.</strong>
           No diagnosis, no runaround, no fine print.
         </p>
       </div>
@@ -1739,7 +2026,7 @@
         </details>
         <details class="faq-item fade-up">
           <summary>How much does fertigation cost?</summary>
-          <p>The Autopilot Lawn System is a one-time investment of $4,997 — covering the full install, your first
+          <p>The Autopilot Lawn System is a one-time investment of $3,999 — covering the full install, your first
             year of service, and a 90-day guarantee. See the full breakdown above.</p>
         </details>
         <details class="faq-item fade-up">
