@@ -353,7 +353,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h2 id="signup-heading">Book Your Fall Fortify Visit</h2>
       <p class="sub">Tell us where you are and we'll reach out to schedule.</p>
 
-      <form id="fortifyForm" novalidate>
+      <form id="fortifyForm" name="fall-fortify" method="POST"
+            data-netlify="true" netlify-honeypot="bot-field" novalidate>
+        <input type="hidden" name="form-name" value="fall-fortify" />
+        <p hidden>
+          <label>Don't fill this out: <input name="bot-field" /></label>
+        </p>
         <div class="field">
           <span class="field-label" id="cityLabel">Where do you live?</span>
           <div class="segmented" role="radiogroup" aria-labelledby="cityLabel">
@@ -396,37 +401,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   (function () {
     var form = document.getElementById('fortifyForm');
     var success = document.getElementById('formSuccess');
+    var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
 
       var city = form.querySelector('input[name="city"]:checked');
-      var name = form.name.value.trim();
-      var phone = form.phone.value.trim();
+      var name = form.elements.name.value.trim();
+      var phone = form.elements.phone.value.trim();
 
       if (!city || !name || !phone) {
         if (!city) form.querySelector('#city-slc').focus();
-        else if (!name) form.name.focus();
-        else form.phone.focus();
+        else if (!name) form.elements.name.focus();
+        else form.elements.phone.focus();
         return;
       }
 
-      var payload = {
-        city: city.value,
-        name: name,
-        phone: phone,
-        serviceDate: form.serviceDate.value || null
-      };
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
 
-      if (window.dataLayer) {
-        window.dataLayer.push({ event: 'fall_fortify_lead', lead: payload });
-      }
+      // Netlify Forms: POST url-encoded form data back to the page path.
+      var data = new URLSearchParams(new FormData(form)).toString();
 
-      // TODO: POST `payload` to a real form endpoint (Formspree, Netlify Forms, CRM, etc.)
-      console.log('Fall Fortify lead:', payload);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: data
+      })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Netlify form submission failed: ' + res.status);
 
-      form.style.display = 'none';
-      success.style.display = 'block';
+          if (window.dataLayer) {
+            window.dataLayer.push({
+              event: 'fall_fortify_lead',
+              lead: {
+                city: city.value,
+                name: name,
+                phone: phone,
+                serviceDate: form.elements.serviceDate.value || null
+              }
+            });
+          }
+
+          form.style.display = 'none';
+          success.style.display = 'block';
+        })
+        .catch(function (err) {
+          console.error(err);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Request My Visit →';
+          alert('Something went wrong sending your request. Please call us at (385) 218-0162.');
+        });
     });
   })();
 </script>
