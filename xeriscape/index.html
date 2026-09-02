@@ -213,6 +213,12 @@
       color: var(--dark);
     }
 
+    .btn-block {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
     .btn-outline-white {
       background: transparent;
       color: var(--white);
@@ -248,152 +254,282 @@
       text-align: center;
     }
 
-    /* ─── FADE-UP ANIMATION ───────────────────── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(28px);
-      transition: opacity 0.55s ease, transform 0.55s ease;
-    }
-
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ─── HERO ────────────────────────────────── */
+    /* ─── HERO / ABOVE THE FOLD ───────────────── */
     .hero {
       min-height: 100vh;
       background: linear-gradient(170deg, #0e1410 0%, #1a2a14 45%, #2a3d1a 100%);
       display: flex;
-      flex-direction: column;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px 6% 100px;
+      padding: 120px 6% 72px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 55%;
-      z-index: 0;
-    }
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 75% 65% at 50% 42%, rgba(8, 12, 7, 0.82) 0%, rgba(8, 12, 7, 0.6) 45%, rgba(7, 11, 6, 0.35) 75%, rgba(7, 11, 6, 0.15) 100%),
-        linear-gradient(180deg, rgba(8, 13, 7, 0.55) 0%, rgba(8, 13, 7, 0.25) 30%, rgba(8, 13, 7, 0.4) 65%, rgba(6, 10, 5, 0.9) 100%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    .hero-inner {
+    .hero-split {
       position: relative;
       z-index: 2;
-      max-width: 860px;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
     }
 
-    .hero .eyebrow {
+    /* ─── LEFT COLUMN ─────────────────────────── */
+    .hero-left .eyebrow {
       color: var(--gold);
-      margin-bottom: 24px;
+      margin-bottom: 18px;
       display: block;
       text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
     }
 
-    .hero h1 {
-      font-size: clamp(2.6rem, 6vw, 4.6rem);
+    .hero-left h1 {
+      font-size: clamp(2.2rem, 4vw, 3.4rem);
       color: var(--white);
       margin-bottom: 28px;
       text-shadow: 0 4px 28px rgba(0, 0, 0, 0.45);
     }
 
-    .hero h1 em {
+    .hero-left h1 em {
       font-style: italic;
       color: var(--gold);
     }
 
-    .hero-sub {
-      font-size: clamp(1rem, 2vw, 1.18rem);
-      color: rgba(255, 255, 255, 0.85);
-      text-shadow: 0 2px 18px rgba(0, 0, 0, 0.5);
-      max-width: 640px;
-      margin: 0 auto 44px;
-      font-weight: 300;
-      line-height: 1.75;
+    /* Detail card */
+    .detail-card {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(201, 168, 76, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 26px 28px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
     }
 
-    .hero-ctas {
-      display: flex;
-      gap: 16px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .hero-scroll-hint {
-      position: absolute;
-      bottom: 36px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .detail-card ul {
+      list-style: none;
       display: flex;
       flex-direction: column;
+      gap: 14px;
+    }
+
+    .detail-card li {
+      position: relative;
+      padding-left: 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.92);
+      line-height: 1.5;
+    }
+
+    .detail-card li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 20px;
+      height: 20px;
+      display: flex;
       align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--dark);
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    .hero-cta-wrap {
+      margin-bottom: 28px;
+    }
+
+    /* Slideshow */
+    .slideshow {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 16 / 10;
+      background: rgba(0, 0, 0, 0.3);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .slideshow-track {
+      position: absolute;
+      inset: 0;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.9s ease;
+    }
+
+    .slide.active {
+      opacity: 1;
+    }
+
+    .slideshow-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
       gap: 8px;
-      z-index: 2;
+      z-index: 3;
     }
 
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
+    .slideshow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      padding: 0;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
     }
 
-    @keyframes scrollPulse {
-
-      0%,
-      100% {
-        opacity: 0.3;
-      }
-
-      50% {
-        opacity: 0.8;
-      }
+    .slideshow-dot.active {
+      background: var(--gold);
+      transform: scale(1.3);
     }
 
-    /* ─── REBATE BANNER ───────────────────────── */
-    .rebate-banner {
-      background: var(--dark);
-      border-top: 1px solid rgba(201, 168, 76, 0.2);
-      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
-      padding: 20px 6%;
-      text-align: center;
+    /* ─── RIGHT COLUMN / FORM ─────────────────── */
+    .hero-form {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 36px 34px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
     }
 
-    .rebate-banner p {
-      color: rgba(255, 255, 255, 0.85);
+    .hero-form h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.7rem;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .hero-form .form-sub {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .field-label .opt {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.78rem;
+    }
+
+    .field input[type="text"],
+    .field input[type="tel"],
+    .field input[type="date"],
+    .field select {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
       font-size: 0.92rem;
-      max-width: 780px;
-      margin: 0 auto;
-      line-height: 1.6;
+      color: var(--dark);
+      padding: 11px 13px;
+      border: 1.5px solid rgba(26, 31, 28, 0.18);
+      border-radius: var(--radius);
+      background: var(--white);
+      transition: border-color 0.18s, box-shadow 0.18s;
     }
 
-    .rebate-banner strong {
-      color: var(--gold-light);
+    .field input:focus,
+    .field select:focus {
+      outline: none;
+      border-color: var(--green);
+      box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.12);
     }
 
-    /* ─── WHY XERISCAPE ───────────────────────── */
+    .segmented {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .segmented label {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 8px;
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-align: center;
+      border: 1.5px solid rgba(26, 31, 28, 0.18);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s, color 0.18s;
+    }
+
+    .segmented input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .segmented label:hover {
+      border-color: var(--green);
+    }
+
+    .segmented input:checked+span {
+      color: var(--green);
+      font-weight: 700;
+    }
+
+    .segmented label:has(input:checked) {
+      border-color: var(--green);
+      background: rgba(45, 80, 22, 0.08);
+    }
+
+    .segmented label:has(input:focus-visible) {
+      box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.18);
+    }
+
+    .hero-form .btn {
+      margin-top: 6px;
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 20px 0;
+    }
+
+    .form-success h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .form-success p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── WHY XERISCAPE (below fold, condensed) ─ */
     .why {
       background: var(--bg);
     }
@@ -401,13 +537,13 @@
     .why-grid {
       display: grid;
       grid-template-columns: 1.1fr 1fr;
-      gap: 80px;
+      gap: 64px;
       align-items: center;
     }
 
     .why-text h2 {
-      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-      margin: 12px 0 24px;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      margin: 12px 0 20px;
     }
 
     .why-text p {
@@ -417,341 +553,77 @@
       margin-bottom: 20px;
     }
 
-    .why-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    .why-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin: 4px 0 28px;
     }
 
-    .why-stat {
-      background: var(--dark);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      text-align: center;
-    }
-
-    .why-stat-value {
-      display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-weight: 700;
-      font-style: italic;
-      font-size: clamp(1.7rem, 2.8vw, 2.2rem);
-      background: linear-gradient(100deg, var(--gold-light) 0%, var(--gold) 55%, var(--gold-light) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      margin-bottom: 8px;
-    }
-
-    .why-stat-label {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.65);
+    .why-list li {
+      position: relative;
+      padding-left: 34px;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--dark);
       line-height: 1.5;
     }
 
-    /* ─── SERVICES ─────────────────────────────── */
-    .services {
-      background: var(--dark);
-    }
-
-    .services .eyebrow {
-      color: var(--gold);
-    }
-
-    .services-intro {
-      max-width: 720px;
-    }
-
-    .services-intro h2 {
-      color: var(--white);
-      margin: 12px 0 16px;
-    }
-
-    .services-intro p {
-      color: rgba(255, 255, 255, 0.65);
-      font-size: 1rem;
-      line-height: 1.8;
-      margin-bottom: 56px;
-    }
-
-    .service-cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 28px;
-    }
-
-    .service-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: var(--radius-lg);
-      padding: 40px 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      transition: border-color 0.25s ease, transform 0.25s ease, background 0.25s ease;
-    }
-
-    .service-card:hover {
-      border-color: rgba(201, 168, 76, 0.4);
-      background: rgba(255, 255, 255, 0.05);
-      transform: translateY(-4px);
-    }
-
-    .service-icon {
-      width: 56px;
-      height: 56px;
-      background: rgba(201, 168, 76, 0.14);
-      border: 1px solid rgba(201, 168, 76, 0.4);
-      border-radius: var(--radius);
+    .why-list li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 22px;
+      height: 22px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.5rem;
-    }
-
-    .service-card strong {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--white);
-    }
-
-    .service-card p {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.62);
-      line-height: 1.7;
-      flex-grow: 1;
-    }
-
-    .service-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 4px;
-    }
-
-    .service-list li {
-      position: relative;
-      padding-left: 20px;
       font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.55);
+      font-weight: 700;
+      color: var(--dark);
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ─── WARRANTY BANNER ─────────────────────── */
+    .warranty-banner {
+      background: var(--dark);
+      border-top: 1px solid rgba(201, 168, 76, 0.2);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+      padding: 22px 6%;
+      text-align: center;
+    }
+
+    .warranty-banner p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.98rem;
+      font-weight: 500;
+      max-width: 780px;
+      margin: 0 auto;
       line-height: 1.6;
     }
 
-    .service-list li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-    }
-
-    /* ─── PROCESS ──────────────────────────────── */
-    .process {
-      background: var(--bg);
-    }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 28px;
-    }
-
-    .process-step {
-      position: relative;
-      padding: 32px 24px;
-      background: var(--white);
-      border: 1px solid rgba(45, 80, 22, 0.15);
-      border-radius: var(--radius-lg);
-    }
-
-    .process-step-num {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: rgba(201, 168, 76, 0.15);
-      border: 1px solid rgba(201, 168, 76, 0.5);
-      color: var(--green);
-      font-family: 'Inter', sans-serif;
+    .warranty-banner strong {
+      color: var(--gold-light);
       font-weight: 700;
-      font-size: 0.95rem;
-      margin-bottom: 20px;
     }
 
-    .process-step strong {
-      display: block;
-      color: var(--dark);
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .process-step p {
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-
-    /* ─── GALLERY ──────────────────────────────── */
-    .gallery {
-      background: var(--dark);
-    }
-
-    .gallery .eyebrow {
-      color: var(--gold);
-    }
-
-    .gallery-intro {
-      text-align: center;
-      max-width: 640px;
-      margin: 0 auto 48px;
-    }
-
-    .gallery-intro h2 {
-      color: var(--white);
-      margin-top: 12px;
-    }
-
-    .gallery-intro p {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.95rem;
-      margin-top: 16px;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 20px;
-    }
-
-    .gallery-grid img {
+    .why-media img {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       border-radius: var(--radius-lg);
       display: block;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
     }
 
-    .gallery-col {
-      display: grid;
-      grid-template-rows: 1fr 1fr;
-      gap: 20px;
-    }
-
-    /* ─── GUARANTEE ────────────────────────────── */
-    .guarantee {
-      background: linear-gradient(135deg, #0e1a0a 0%, #1a2a14 50%, #0e1a0a 100%);
-      text-align: center;
-      padding: 96px 6%;
-    }
-
-    .guarantee-badge {
-      width: 90px;
-      height: 90px;
-      border-radius: 50%;
-      background: var(--gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 2.2rem;
-      margin: 0 auto 32px;
-      box-shadow: 0 0 0 8px rgba(201, 168, 76, 0.15), 0 0 0 16px rgba(201, 168, 76, 0.06);
-    }
-
-    .guarantee h2 {
-      font-size: clamp(2rem, 4vw, 3rem);
-      color: var(--white);
-      margin-bottom: 24px;
-    }
-
-    .guarantee p {
-      font-size: 1.02rem;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 580px;
-      margin: 0 auto;
-      line-height: 1.8;
-    }
-
-    /* ─── FAQ ─────────────────────────────────── */
-    .faq {
-      background: var(--bg);
-    }
-
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: var(--white);
-      border: 1px solid rgba(45, 80, 22, 0.15);
-      border-radius: var(--radius);
-      padding: 4px 24px;
-    }
-
-    .faq-item summary {
-      list-style: none;
-      cursor: pointer;
-      padding: 20px 28px 20px 0;
-      font-weight: 600;
-      font-size: 0.98rem;
-      position: relative;
-    }
-
-    .faq-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .faq-item summary::after {
-      content: '+';
-      position: absolute;
-      right: 0;
-      top: 18px;
-      font-size: 1.4rem;
-      color: var(--gold);
-      font-weight: 400;
-      transition: transform 0.2s;
-    }
-
-    .faq-item[open] summary::after {
-      transform: rotate(45deg);
-    }
-
-    .faq-item p {
-      font-size: 0.92rem;
+    .why-media-caption {
+      font-size: 0.82rem;
       color: var(--text-muted);
-      line-height: 1.75;
-      padding-bottom: 22px;
-    }
-
-    /* ─── FREE ASSESSMENT / CTA ─────────────────── */
-    .free-assessment {
-      background: var(--bg);
-      text-align: center;
-      padding: 96px 6%;
-    }
-
-    .free-assessment h2 {
-      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
-      color: var(--dark);
-      margin-bottom: 20px;
-    }
-
-    .free-assessment p {
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 520px;
-      margin: 0 auto 36px;
-      line-height: 1.75;
+      line-height: 1.6;
+      margin-top: 14px;
+      font-style: italic;
     }
 
     /* ─── FOOTER ──────────────────────────────── */
@@ -791,27 +663,23 @@
     }
 
     /* ─── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 1000px) {
+      .hero-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        max-width: 560px;
+      }
+
+      .hero {
+        min-height: 0;
+        padding: 116px 6% 64px;
+      }
+    }
+
     @media (max-width: 900px) {
       .why-grid {
         grid-template-columns: 1fr;
-        gap: 48px;
-      }
-
-      .service-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .process-steps {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .gallery-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-col {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: none;
+        gap: 40px;
       }
     }
 
@@ -819,11 +687,15 @@
 
       .section,
       .section-sm {
-        padding: 72px 5%;
+        padding: 64px 5%;
       }
 
       .hero {
-        padding: 100px 5% 80px;
+        padding: 100px 5% 56px;
+      }
+
+      .hero-form {
+        padding: 28px 22px;
       }
 
       #site-nav {
@@ -847,14 +719,6 @@
         padding: 9px 16px;
         font-size: 0.78rem !important;
         white-space: nowrap;
-      }
-
-      .process-steps {
-        grid-template-columns: 1fr;
-      }
-
-      .gallery-col {
-        grid-template-columns: 1fr;
       }
 
       footer {
@@ -915,64 +779,6 @@
     }
   }
   </script>
-
-  <!-- Structured Data: FAQPage -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "What is xeriscaping?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Xeriscaping is landscape design built around drought-tolerant plants, efficient drip irrigation, and mulch or rock groundcover instead of thirsty turf. Done well, it still looks lush and intentional — it isn't just gravel and cactus."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Will xeriscaping actually lower my water bill?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Replacing spray-irrigated turf with drip-irrigated, drought-tolerant planting typically cuts landscape water use by 50-60%, since drip delivers water directly to the root zone with far less evaporation and runoff than overhead sprinklers."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can you convert my existing sprinklers to drip instead of a full xeriscape redesign?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We install drip conversion kits on existing irrigation zones — planter beds, park strips, shrub rows — without a full landscape redesign, so you can cut water waste in specific areas without replacing your whole yard."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are there rebates available for converting my lawn in Utah?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Utah's statewide Landscape Incentive Program and local water conservancy districts, including Jordan Valley, offer per-square-foot rebates for converting grass to water-wise landscaping with drip irrigation. Rebate amounts and eligibility vary by district and change over time, so we help confirm current program details and requirements before you start."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Does fertigation work with xeriscape plantings, not just lawns?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Fertigation delivers liquid nutrients through drip lines directly to the root zone of shrubs, perennials, and native plantings, which is a more precise and less wasteful way to feed a xeriscape bed than surface-broadcast fertilizer."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Where does Mr. Fertigation provide xeriscape and drip irrigation service?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "We serve residential properties in Salt Lake City and Park City, Utah."
-        }
-      }
-    ]
-  }
-  </script>
 </head>
 
 <body>
@@ -987,273 +793,158 @@
         alt="Mr. Fertigation" /></a>
     <div class="nav-right">
       <a href="#why">Why Xeriscape</a>
-      <a href="#services">Services</a>
-      <a href="#process">How It Works</a>
-      <a href="#faq">FAQ</a>
-      <a href="#free-assessment" class="nav-cta">Get a Free Assessment →</a>
+      <a href="#request" class="nav-cta">Get a Free Assessment →</a>
     </div>
   </nav>
 
-  <!-- ── HERO ───────────────────────────────────────── -->
+  <!-- ── ABOVE THE FOLD ─────────────────────────────── -->
   <section class="hero" aria-labelledby="hero-headline">
-    <img class="hero-bg" src="../garden.jpg"
-      alt="Drought-tolerant garden bed with layered perennials in a Utah landscape" fetchpriority="high" />
-    <div class="hero-inner">
-      <span class="eyebrow">Salt Lake City &amp; Park City, Utah</span>
-      <h1 class="display" id="hero-headline">
-        The yard nature would have designed herself. <em>Naturally water-wise.</em>
-      </h1>
-      <p class="hero-sub">
-        Xeriscape design and installation, drip line irrigation and conversion, and fertigation —
-        so your landscape thrives on a fraction of the water a traditional lawn needs.
-      </p>
-      <div class="hero-ctas">
-        <a href="#free-assessment" class="btn btn-gold">Get a Free Assessment →</a>
-        <a href="#services" class="btn btn-outline-white">See Our Services</a>
+    <div class="hero-split">
+
+      <!-- LEFT: headline, detail card, CTA, slideshow -->
+      <div class="hero-left">
+        <span class="eyebrow">Salt Lake City &amp; Park City, Utah</span>
+        <h1 class="display" id="hero-headline">
+          The yard nature would have designed herself. <em>Naturally water-wise.</em>
+        </h1>
+
+        <div class="detail-card">
+          <ul>
+            <li>Use less water</li>
+            <li>Minimize yard maintenance</li>
+            <li>Wow your neighbors</li>
+          </ul>
+        </div>
+
+        <div class="hero-cta-wrap">
+          <a href="#request" class="btn btn-gold btn-block">Get a Free Assessment →</a>
+        </div>
+
+        <div class="slideshow" aria-label="Xeriscape project photos" aria-roledescription="carousel">
+          <div class="slideshow-track">
+            <img class="slide active" src="xeriscape-images/xeriscape-one.jpg"
+              alt="Layered drought-tolerant xeriscape planting" />
+            <img class="slide" src="xeriscape-images/xeriscape-salt-lake-city.jpg"
+              alt="Xeriscape front yard in Salt Lake City" />
+            <img class="slide" src="xeriscape-images/xeriscape-driveway-salt-lake-city.jpg"
+              alt="Xeriscape driveway border in Salt Lake City" />
+            <img class="slide" src="xeriscape-images/xeriscape-park-city.jpg"
+              alt="Xeriscape landscape at a Park City home" />
+            <img class="slide" src="xeriscape-images/xeriscape-mountains.jpg"
+              alt="Water-wise landscape with mountain backdrop" />
+          </div>
+          <div class="slideshow-dots" role="tablist"></div>
+        </div>
       </div>
-    </div>
-    <div class="hero-scroll-hint" aria-hidden="true">
-      <div class="scroll-line"></div>
-      Scroll
+
+      <!-- RIGHT: lead form -->
+      <div class="hero-form" id="request">
+        <h2>Get a Free Assessment</h2>
+        <p class="form-sub">Tell us about your yard and we'll reach out.</p>
+
+        <form id="xeriForm" name="xeriscape" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+          <input type="hidden" name="form-name" value="xeriscape" />
+          <p hidden>
+            <label>Don't fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="field">
+            <span class="field-label" id="cityLabel">Where do you live?</span>
+            <div class="segmented" role="radiogroup" aria-labelledby="cityLabel">
+              <label>
+                <input type="radio" name="city" value="Salt Lake City" id="city-slc" required />
+                <span>Salt Lake City</span>
+              </label>
+              <label>
+                <input type="radio" name="city" value="Park City" />
+                <span>Park City</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="phone">What's your phone number?</label>
+            <input type="tel" name="phone" id="phone" autocomplete="tel" required />
+          </div>
+
+          <div class="field">
+            <span class="field-label" id="fertLabel">Do you know what fertigation is?
+              <span class="opt">(optional)</span></span>
+            <div class="segmented" role="radiogroup" aria-labelledby="fertLabel">
+              <label>
+                <input type="radio" name="knows_fertigation" value="Yes" />
+                <span>Yes</span>
+              </label>
+              <label>
+                <input type="radio" name="knows_fertigation" value="No" />
+                <span>No</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="budget">What's your budget?
+              <span class="opt">(optional)</span></label>
+            <input type="text" name="budget" id="budget" placeholder="e.g. $5,000–$10,000" />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="goal">What's your primary goal?
+              <span class="opt">(optional)</span></label>
+            <select name="primary_goal" id="goal">
+              <option value="">Select one…</option>
+              <option value="Save water">Save water</option>
+              <option value="Remove grass">Remove grass</option>
+              <option value="Low maintenance">Low maintenance</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="timeline">What's your timeline?</label>
+            <input type="date" name="timeline" id="timeline" />
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-block">Submit →</button>
+        </form>
+
+        <div class="form-success" id="formSuccess">
+          <h3>Thanks — we've got it.</h3>
+          <p>We'll reach out shortly to schedule your free assessment. Need us sooner? Call (385) 218-0162.</p>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- ── REBATE BANNER ──────────────────────────────── -->
-  <div class="rebate-banner">
-    <p>
-      <strong>Utah homeowners may qualify for landscape conversion rebates</strong> — up to several dollars per
-      square foot through the state's Landscape Incentive Program and local water conservancy districts. We'll help
-      you check current eligibility for your property.
-    </p>
+  <!-- ── WARRANTY BANNER ────────────────────────────── -->
+  <div class="warranty-banner">
+    <p>Every fertigation install includes a <strong>3-year plant warranty</strong>.</p>
   </div>
 
-  <!-- ── WHY XERISCAPE ──────────────────────────────── -->
+  <!-- ── FERTIGATION + XERISCAPE ────────────────────── -->
   <section class="why section" id="why" aria-labelledby="why-heading">
     <div class="container">
       <div class="why-grid">
-        <div class="why-text fade-up">
-          <span class="eyebrow">The Case For Xeriscape</span>
-          <h2 class="display" id="why-heading">Utah's Climate Wasn't Built for Turf</h2>
-          <p>
-            Salt Lake City and Park City sit in one of the driest climates in the country, yet most yards are still
-            planted and irrigated like it rains all summer. Traditional turf needs frequent, shallow watering just
-            to survive — and every overhead cycle loses water to evaporation, wind drift, and runoff before it ever
-            reaches a root.
-          </p>
-          <p>
-            Xeriscaping flips that equation: regionally adapted plants, efficient drip delivery, and mulch or
-            rock groundcover that holds moisture instead of shedding it. The result is a landscape that looks
-            intentional and layered year-round, uses a fraction of the water, and asks a lot less of you —
-            less mowing, less fertilizing, less time spent fighting your own yard.
-          </p>
-          <a href="#services" class="btn btn-outline-dark">Explore Our Services →</a>
-        </div>
-        <div class="why-stats fade-up" style="transition-delay:0.1s">
-          <div class="why-stat">
-            <span class="why-stat-value">50-60%</span>
-            <span class="why-stat-label">Less water than a traditional spray-irrigated lawn</span>
-          </div>
-          <div class="why-stat">
-            <span class="why-stat-value">90%+</span>
-            <span class="why-stat-label">Water delivery efficiency with drip vs. ~50-70% with overhead spray</span>
-          </div>
-          <div class="why-stat">
-            <span class="why-stat-value">Year-Round</span>
-            <span class="why-stat-label">Structure and color from layered, drought-adapted planting</span>
-          </div>
-          <div class="why-stat">
-            <span class="why-stat-value">Less Upkeep</span>
-            <span class="why-stat-label">No weekly mowing, less fertilizer, fewer weeds to manage</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── SERVICES ───────────────────────────────────── -->
-  <section class="services section" id="services" aria-labelledby="services-heading">
-    <div class="container">
-      <div class="services-intro fade-up">
-        <span class="eyebrow">What We Do</span>
-        <h2 class="display" id="services-heading">Design, Irrigation, and Nutrition — Built as One System</h2>
-        <p>
-          Xeriscaping only works long-term when the planting, the irrigation, and the feeding schedule are designed
-          together. We handle all three, whether you want a full yard transformation or a targeted conversion of
-          your thirstiest beds.
-        </p>
-      </div>
-
-      <div class="service-cards">
-        <div class="service-card fade-up">
-          <div class="service-icon" aria-hidden="true">🌵</div>
-          <strong>Xeriscape Design &amp; Installation</strong>
-          <p>
-            A custom plan for your yard's sun exposure, slope, and soil — built with regionally adapted, drought
-            tolerant plants, mulch or rock groundcover, and layout that keeps curb appeal front and center.
-          </p>
-          <ul class="service-list">
-            <li>Full-yard or park-strip conversions</li>
-            <li>Native and drought-adapted plant selection</li>
-            <li>Mulch, rock, and hardscape groundcover</li>
+        <div class="why-text">
+          <span class="eyebrow">Where Fertigation Fits</span>
+          <h2 class="display" id="why-heading">The System That Conserves Water and Protects Your Plants</h2>
+          <ul class="why-list">
+            <li>Precise dosage of the right fertilizer for your plants</li>
+            <li>Healthy plants with deep roots need less water</li>
+            <li>Insurance for your plants</li>
           </ul>
+          <a href="#request" class="btn btn-outline-dark">Get a Free Assessment →</a>
         </div>
-
-        <div class="service-card fade-up" style="transition-delay:0.05s">
-          <div class="service-icon" aria-hidden="true">💧</div>
-          <strong>Drip Line Installation &amp; Conversion</strong>
-          <p>
-            New drip systems for xeriscape beds, or a straight conversion of your existing overhead spray zones to
-            drip — delivering water directly to the root zone instead of the air and pavement around it.
+        <div class="why-media">
+          <img src="../ezflo-injection-fertigation-salt-lake-city.webp"
+            alt="EZ-FLO fertigation injection unit installed on a drip irrigation line at a Salt Lake City home"
+            loading="lazy" />
+          <p class="why-media-caption">
+            An inline injection unit doses nutrient into the drip system — the same lines that water your
+            xeriscape beds now feed them too.
           </p>
-          <ul class="service-list">
-            <li>Spray-to-drip zone conversion</li>
-            <li>Emitter placement tuned to plant type</li>
-            <li>Smart controller integration</li>
-          </ul>
-        </div>
-
-        <div class="service-card fade-up" style="transition-delay:0.1s">
-          <div class="service-icon" aria-hidden="true">⚙️</div>
-          <strong>Fertigation for Xeriscape Beds</strong>
-          <p>
-            Liquid nutrients delivered straight through your drip lines to the root zone of shrubs, perennials, and
-            new plantings — precise feeding that helps drought-tolerant plants establish faster, without waste.
-          </p>
-          <ul class="service-list">
-            <li>Custom nutrient blend by plant zone</li>
-            <li>Faster establishment for new plantings</li>
-            <li>No surface broadcasting or runoff</li>
-          </ul>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- ── PROCESS ────────────────────────────────────── -->
-  <section class="process section" id="process" aria-labelledby="process-heading">
-    <div class="container">
-      <div class="text-center" style="max-width:640px;margin:0 auto 56px;">
-        <span class="eyebrow">How It Works</span>
-        <h2 class="display" id="process-heading" style="margin-top:12px;">From Overwatered Lawn to Water-Wise Yard</h2>
-      </div>
-      <div class="process-steps">
-        <div class="process-step fade-up">
-          <div class="process-step-num" aria-hidden="true">1</div>
-          <strong>Free Site Assessment</strong>
-          <p>We walk your property, evaluate sun, slope, soil, and existing irrigation, and talk through your goals
-            and budget.</p>
-        </div>
-        <div class="process-step fade-up" style="transition-delay:0.05s">
-          <div class="process-step-num" aria-hidden="true">2</div>
-          <strong>Design &amp; Quote</strong>
-          <p>A custom planting and irrigation plan with a firm quote — full conversion or a targeted section, your
-            call.</p>
-        </div>
-        <div class="process-step fade-up" style="transition-delay:0.1s">
-          <div class="process-step-num" aria-hidden="true">3</div>
-          <strong>Install</strong>
-          <p>Turf removal where needed, drip line install or conversion, planting, and groundcover — most projects
-            completed in days, not weeks.</p>
-        </div>
-        <div class="process-step fade-up" style="transition-delay:0.15s">
-          <div class="process-step-num" aria-hidden="true">4</div>
-          <strong>Establish &amp; Feed</strong>
-          <p>Fertigation and a tuned watering schedule get new plantings established fast, then scale back as the
-            landscape matures.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── GALLERY ────────────────────────────────────── -->
-  <section class="gallery section" aria-labelledby="gallery-heading">
-    <div class="container">
-      <div class="gallery-intro fade-up">
-        <span class="eyebrow">The Look</span>
-        <h2 class="display" id="gallery-heading">Water-Wise Doesn't Mean Bare</h2>
-        <p>A well-designed xeriscape reads as intentional, layered, and full — not a gravel yard with a cactus in
-          the middle.</p>
-      </div>
-      <div class="gallery-grid fade-up" style="transition-delay:0.1s">
-        <img src="../flowers.jpg" alt="Layered drought-tolerant flowering plants in a xeriscape bed" />
-        <div class="gallery-col">
-          <img src="../garden.jpg" alt="Xeriscape garden bed with mulch groundcover and perennials" />
-          <img src="../Park-City-Home-Sprinklers-Running.png"
-            alt="Drip and irrigation system installed at a Park City property" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── GUARANTEE ──────────────────────────────────── -->
-  <section class="guarantee" aria-labelledby="guarantee-heading">
-    <div class="container-narrow">
-      <div class="guarantee-badge" aria-hidden="true">🏆</div>
-      <span class="eyebrow" style="color:var(--gold);display:block;margin-bottom:16px;">Our Promise</span>
-      <h2 class="display" id="guarantee-heading">90-Day Establishment Guarantee</h2>
-      <p style="margin-top:24px;">
-        If plantings from your installation fail to establish within 90 days under normal conditions, we replace
-        them — free. We design for your yard's actual sun, soil, and water, so it's built to succeed from day one.
-      </p>
-    </div>
-  </section>
-
-  <!-- ── FAQ ─────────────────────────────────────────── -->
-  <section class="faq section" id="faq" aria-labelledby="faq-heading">
-    <div class="container-narrow">
-      <div class="text-center" style="text-align:center;margin-bottom:48px;">
-        <span class="eyebrow">Questions</span>
-        <h2 class="display" id="faq-heading" style="font-size:clamp(1.9rem,3.5vw,2.8rem);margin-top:12px;">Frequently
-          Asked Questions</h2>
-      </div>
-      <div class="faq-list">
-        <details class="faq-item fade-up">
-          <summary>What is xeriscaping?</summary>
-          <p>Xeriscaping is landscape design built around drought-tolerant plants, efficient drip irrigation, and
-            mulch or rock groundcover instead of thirsty turf. Done well, it still looks lush and intentional — it
-            isn't just gravel and cactus.</p>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>Will xeriscaping actually lower my water bill?</summary>
-          <p>Yes. Replacing spray-irrigated turf with drip-irrigated, drought-tolerant planting typically cuts
-            landscape water use by 50-60%, since drip delivers water directly to the root zone with far less
-            evaporation and runoff than overhead sprinklers.</p>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>Can you convert my existing sprinklers to drip instead of a full xeriscape redesign?</summary>
-          <p>Yes. We install drip conversion kits on existing irrigation zones — planter beds, park strips, shrub
-            rows — without a full landscape redesign, so you can cut water waste in specific areas without replacing
-            your whole yard.</p>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>Are there rebates available for converting my lawn in Utah?</summary>
-          <p>Utah's statewide Landscape Incentive Program and local water conservancy districts, including Jordan
-            Valley, offer per-square-foot rebates for converting grass to water-wise landscaping with drip
-            irrigation. Rebate amounts and eligibility vary by district and change over time, so we help confirm
-            current program details and requirements before you start.</p>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>Does fertigation work with xeriscape plantings, not just lawns?</summary>
-          <p>Yes. Fertigation delivers liquid nutrients through drip lines directly to the root zone of shrubs,
-            perennials, and native plantings, which is a more precise and less wasteful way to feed a xeriscape bed
-            than surface-broadcast fertilizer.</p>
-        </details>
-        <details class="faq-item fade-up">
-          <summary>Where does Mr. Fertigation provide xeriscape and drip irrigation service?</summary>
-          <p>We serve residential properties in Salt Lake City and Park City, Utah.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── FREE ASSESSMENT ────────────────────────────── -->
-  <section class="free-assessment" id="free-assessment" aria-labelledby="free-assessment-heading">
-    <div class="container-narrow">
-      <span class="eyebrow" style="color:var(--gold);display:block;margin-bottom:16px;">Get Started</span>
-      <h2 class="display" id="free-assessment-heading">Get a Free Xeriscape Assessment</h2>
-      <p>Tell us about your yard and we'll walk you through what a xeriscape conversion, drip install, or fertigation
-        upgrade could look like — no pressure, no obligation.</p>
-      <a href="tel:3852180162" class="btn btn-gold">Call Us Now →</a>
     </div>
   </section>
 
@@ -1289,17 +980,95 @@
       });
     });
 
-    // Fade-up on scroll (IntersectionObserver)
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
+    // ── Slideshow ──────────────────────────────────
+    (function () {
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      const dotsWrap = document.querySelector('.slideshow-dots');
+      if (!slides.length) return;
 
-    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+      let idx = 0;
+      let timer;
+
+      slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'slideshow-dot' + (i === 0 ? ' active' : '');
+        dot.setAttribute('role', 'tab');
+        dot.setAttribute('aria-label', 'Show slide ' + (i + 1));
+        dot.addEventListener('click', () => { go(i); reset(); });
+        dotsWrap.appendChild(dot);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function go(n) {
+        slides[idx].classList.remove('active');
+        dots[idx].classList.remove('active');
+        idx = (n + slides.length) % slides.length;
+        slides[idx].classList.add('active');
+        dots[idx].classList.add('active');
+      }
+
+      function next() { go(idx + 1); }
+      function reset() { clearInterval(timer); timer = setInterval(next, 4500); }
+      reset();
+    })();
+
+    // ── Form (Netlify Forms) ───────────────────────
+    (function () {
+      const form = document.getElementById('xeriForm');
+      const success = document.getElementById('formSuccess');
+      const submitBtn = form.querySelector('button[type="submit"]');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const city = form.querySelector('input[name="city"]:checked');
+        const phone = form.elements.phone.value.trim();
+
+        if (!city || !phone) {
+          if (!city) form.querySelector('#city-slc').focus();
+          else form.elements.phone.focus();
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+
+        // Netlify Forms: POST url-encoded form data back to the page path.
+        const data = new URLSearchParams(new FormData(form)).toString();
+
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: data
+        })
+          .then(function (res) {
+            if (!res.ok) throw new Error('Netlify form submission failed: ' + res.status);
+
+            if (window.dataLayer) {
+              window.dataLayer.push({
+                event: 'xeriscape_lead',
+                lead: {
+                  city: city.value,
+                  phone: phone,
+                  knows_fertigation: (form.querySelector('input[name="knows_fertigation"]:checked') || {}).value || null,
+                  budget: form.elements.budget.value.trim() || null,
+                  primary_goal: form.elements.primary_goal.value || null,
+                  timeline: form.elements.timeline.value || null
+                }
+              });
+            }
+
+            form.style.display = 'none';
+            success.style.display = 'block';
+          })
+          .catch(function (err) {
+            console.error(err);
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit →';
+            alert('Something went wrong sending your request. Please call us at (385) 218-0162.');
+          });
+      });
+    })();
   </script>
 </body>
 
