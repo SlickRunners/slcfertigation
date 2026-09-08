@@ -270,6 +270,45 @@
       margin: 0 auto;
     }
 
+    .signup-brand {
+      margin-bottom: 28px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(26, 31, 28, 0.14);
+      text-align: center;
+    }
+
+    .signup-brand .logo-lockup {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    .signup-brand .logo-lockup .logo-main {
+      display: block;
+      height: 160px;
+      width: auto;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+
+    .signup-brand .award-badge {
+      position: absolute;
+      top: -57px;
+      right: -24px;
+      height: 107px;
+      width: auto;
+      margin: 0;
+    }
+
+    .signup-brand .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2rem;
+      line-height: 1.15;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
     .signup h2 {
       font-family: 'Cormorant Garamond', serif;
       font-weight: 700;
@@ -446,6 +485,14 @@
     <!-- ── RIGHT: FORM ─────────────────────────── -->
     <section class="signup" aria-labelledby="signup-heading">
       <div class="signup-inner">
+        <div class="signup-brand">
+          <span class="logo-lockup">
+            <img class="logo-main" src="../Mr-Fertigation-Horizontal-Black-Text.svg" alt="Mr. Fertigation" />
+            <img class="award-badge" src="../Blue-Ribbon-Quality-Service-Award.png"
+              alt="Blue Ribbon Quality Service Award" />
+          </span>
+          <p class="tagline">Your yard, on autopilot.</p>
+        </div>
         <h2 id="signup-heading">Book Your Fall Fortify Visit</h2>
         <p class="sub">Tell us where you are and we'll reach out in the next 24 hours to schedule a visit.</p>
 
