@@ -507,6 +507,13 @@
       margin-top: 6px;
     }
 
+    .form-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 12px;
+    }
+
     .form-success {
       display: none;
       text-align: center;
@@ -832,7 +839,7 @@
       <!-- RIGHT: lead form -->
       <div class="hero-form" id="request">
         <h2>Get a Free Assessment</h2>
-        <p class="form-sub">Tell us about your yard and we'll reach out.</p>
+        <p class="form-sub">Tell us about your yard and we'll reach out within the next 24 hours.</p>
 
         <form id="xeriForm" name="xeriscape" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
           <input type="hidden" name="form-name" value="xeriscape" />
@@ -897,11 +904,12 @@
           </div>
 
           <button type="submit" class="btn btn-gold btn-block">Submit →</button>
+          <p class="form-note">Expect a call back within 24 hours of submitting this form.</p>
         </form>
 
         <div class="form-success" id="formSuccess">
           <h3>Thanks — we've got it.</h3>
-          <p>We'll reach out shortly to schedule your free assessment. Need us sooner? Call (385) 218-0162.</p>
+          <p>We'll call you within the hour to schedule your free assessment. Need us sooner? Call (385) 218-0162.</p>
         </div>
       </div>
 

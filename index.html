@@ -179,6 +179,20 @@
       color: var(--dark) !important;
     }
 
+    .nav-call {
+      border: 1px solid var(--gold) !important;
+      color: var(--gold) !important;
+      font-weight: 700 !important;
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      font-size: 0.82rem !important;
+    }
+
+    .nav-call:hover {
+      background: var(--gold) !important;
+      color: var(--dark) !important;
+    }
+
     /* ─── BUTTONS ─────────────────────────────── */
     .btn {
       display: inline-block;
@@ -1543,8 +1557,14 @@
         gap: 14px;
       }
 
-      .nav-right a:not(.nav-cta) {
+      .nav-right a:not(.nav-cta):not(.nav-call) {
         display: none;
+      }
+
+      .nav-call {
+        padding: 8px 14px;
+        font-size: 0.78rem !important;
+        white-space: nowrap;
       }
 
       .nav-cta {
@@ -1561,7 +1581,8 @@
     }
 
     @media (max-width: 380px) {
-      .nav-cta {
+      .nav-cta,
+      .nav-call {
         padding: 8px 12px;
         font-size: 0.72rem !important;
       }
@@ -1687,6 +1708,7 @@
       <a href="#benefits">Benefits</a>
       <a href="#what-included">What's Included</a>
       <a href="#faq">FAQ</a>
+      <a href="tel:3852020622" class="nav-call">Call Now</a>
       <a href="#free-assessment" class="nav-cta">Learn More →</a>
     </div>
   </nav>
