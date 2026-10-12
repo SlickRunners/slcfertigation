@@ -364,6 +364,28 @@
       box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.12);
     }
 
+    .field-error {
+      display: none;
+      color: var(--clay);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .field.has-error input[type="text"],
+    .field.has-error input[type="tel"],
+    .field.has-error input[type="date"] {
+      border-color: var(--clay);
+    }
+
+    .field.has-error .segmented label {
+      border-color: var(--clay);
+    }
+
+    .field.has-error .field-error {
+      display: block;
+    }
+
     /* Segmented radio group */
     .segmented {
       display: grid;
@@ -502,7 +524,7 @@
           <p hidden>
             <label>Don't fill this out: <input name="bot-field" /></label>
           </p>
-          <div class="field">
+          <div class="field" id="cityField">
             <span class="field-label" id="cityLabel">Where do you live?</span>
             <div class="segmented" role="radiogroup" aria-labelledby="cityLabel">
               <input type="radio" name="city" id="city-slc" value="Salt Lake City" required />
@@ -510,16 +532,19 @@
               <input type="radio" name="city" id="city-pc" value="Park City" />
               <label for="city-pc">Park City</label>
             </div>
+            <p class="field-error">Please select a city.</p>
           </div>
 
-          <div class="field">
+          <div class="field" id="nameField">
             <label for="name">Your name</label>
             <input type="text" id="name" name="name" autocomplete="name" required />
+            <p class="field-error">Please enter your name.</p>
           </div>
 
-          <div class="field">
+          <div class="field" id="phoneField">
             <label for="phone">Phone number</label>
             <input type="tel" id="phone" name="phone" autocomplete="tel" required />
+            <p class="field-error">Please enter your phone number.</p>
           </div>
 
           <div class="field">
@@ -548,12 +573,30 @@
       var success = document.getElementById('formSuccess');
       var submitBtn = form.querySelector('button[type="submit"]');
 
+      function setFieldError(fieldId, hasError) {
+        document.getElementById(fieldId).classList.toggle('has-error', hasError);
+      }
+
+      form.elements.name.addEventListener('input', function () {
+        if (form.elements.name.value.trim()) setFieldError('nameField', false);
+      });
+      form.elements.phone.addEventListener('input', function () {
+        if (form.elements.phone.value.trim()) setFieldError('phoneField', false);
+      });
+      form.querySelectorAll('input[name="city"]').forEach(function (radio) {
+        radio.addEventListener('change', function () { setFieldError('cityField', false); });
+      });
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         var city = form.querySelector('input[name="city"]:checked');
         var name = form.elements.name.value.trim();
         var phone = form.elements.phone.value.trim();
+
+        setFieldError('cityField', !city);
+        setFieldError('nameField', !name);
+        setFieldError('phoneField', !phone);
 
         if (!city || !name || !phone) {
           if (!city) form.querySelector('#city-slc').focus();
@@ -595,7 +638,7 @@
             console.error(err);
             submitBtn.disabled = false;
             submitBtn.textContent = 'Request My Visit →';
-            alert('Something went wrong sending your request. Please call us at (385) 218-0162.');
+            alert('Something went wrong sending your request. Please call us at (385) 202-0622.');
           });
       });
     })();

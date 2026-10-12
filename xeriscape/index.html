@@ -513,6 +513,29 @@
       box-shadow: 0 0 0 3px rgba(45, 80, 22, 0.12);
     }
 
+    .field-error {
+      display: none;
+      color: var(--clay);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .field.has-error input[type="text"],
+    .field.has-error input[type="tel"],
+    .field.has-error input[type="date"],
+    .field.has-error select {
+      border-color: var(--clay);
+    }
+
+    .field.has-error .segmented label {
+      border-color: var(--clay);
+    }
+
+    .field.has-error .field-error {
+      display: block;
+    }
+
     .segmented {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -912,7 +935,7 @@
             <label>Don't fill this out: <input name="bot-field" /></label>
           </p>
 
-          <div class="field">
+          <div class="field" id="cityField">
             <span class="field-label" id="cityLabel">Where do you live?</span>
             <div class="segmented" role="radiogroup" aria-labelledby="cityLabel">
               <label>
@@ -924,11 +947,13 @@
                 <span>Park City</span>
               </label>
             </div>
+            <p class="field-error">Please select a city.</p>
           </div>
 
-          <div class="field">
+          <div class="field" id="phoneField">
             <label class="field-label" for="phone">What's your phone number?</label>
             <input type="tel" name="phone" id="phone" autocomplete="tel" required />
+            <p class="field-error">Please enter your phone number.</p>
           </div>
 
           <div class="field">
@@ -1083,11 +1108,25 @@
       const success = document.getElementById('formSuccess');
       const submitBtn = form.querySelector('button[type="submit"]');
 
+      function setFieldError(fieldId, hasError) {
+        document.getElementById(fieldId).classList.toggle('has-error', hasError);
+      }
+
+      form.elements.phone.addEventListener('input', function () {
+        if (form.elements.phone.value.trim()) setFieldError('phoneField', false);
+      });
+      form.querySelectorAll('input[name="city"]').forEach(function (radio) {
+        radio.addEventListener('change', function () { setFieldError('cityField', false); });
+      });
+
       form.addEventListener('submit', function (e) {
         e.preventDefault();
 
         const city = form.querySelector('input[name="city"]:checked');
         const phone = form.elements.phone.value.trim();
+
+        setFieldError('cityField', !city);
+        setFieldError('phoneField', !phone);
 
         if (!city || !phone) {
           if (!city) form.querySelector('#city-slc').focus();
@@ -1130,7 +1169,7 @@
             console.error(err);
             submitBtn.disabled = false;
             submitBtn.textContent = 'Submit →';
-            alert('Something went wrong sending your request. Please call us at (385) 218-0162.');
+            alert('Something went wrong sending your request. Please call us at (385) 202-0622.');
           });
       });
     })();
